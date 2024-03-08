@@ -1,0 +1,40 @@
+# ---
+# - name: Install RKE, kubectl, and Docker
+#   hosts: all
+#   become: yes
+#   tasks:
+#     - name: Install dependencies
+#       apt:
+#         name: "{{ item }}"
+#         state: present
+#       loop:
+#         - apt-transport-https
+#         - ca-certificates
+#         - curl
+#         - software-properties-common
+
+#     - name: Add Docker GPG key
+#       apt_key:
+#         url: https://download.docker.com/linux/ubuntu/gpg
+#         state: present
+
+#     - name: Add Docker repository
+#       apt_repository:
+#         repo: https://docs.docker.com/install/linux/docker-ce/ubuntu/ 
+#         state: present
+
+#     - name: Install Docker
+#       apt:
+#         name: docker.io
+#         state: present
+#       tags:  docker  
+
+#     - name: Disable swap
+#       command: swapoff -a
+#       tags: swap
+
+#     - name: Install RKE
+#       shell: https://github.com/rancher/rke/releases/download/v1.5.5/rke_linux-amd64
+
+#     - name: Install kubectl
+#       shell: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
